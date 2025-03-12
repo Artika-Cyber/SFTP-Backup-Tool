@@ -1,0 +1,10 @@
+version: '3'
+services:
+  sbato:
+    container_name: sbato
+    build: .
+    volumes:
+      - ./config.yml:/app/config.yml
+      - /home/alexis/Documents/HomeInfra/ssh:/root/.ssh
+      - ./backups:/backups
+    command: backup

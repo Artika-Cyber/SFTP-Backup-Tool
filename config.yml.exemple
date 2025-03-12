@@ -1,0 +1,12 @@
+global:
+  local_path: /backups
+  keep_backups: 2
+  encrypt_password: your_secure_password_here
+
+hosts:
+  - name: testtest
+    key_path: /root/.ssh/my_key
+    user: root
+    host: hostname
+    remote_paths:
+      - /mypath
