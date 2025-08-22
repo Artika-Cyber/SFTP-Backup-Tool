@@ -3,7 +3,7 @@ FROM debian:stable-slim
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
-    liblz4-tool \
+    lz4 \
     openssh-client \
     wget \
     && rm -rf /var/lib/apt/lists/*
