@@ -176,7 +176,10 @@ restore() {
     hosts_count=$(read_config '.hosts | length')
     for i in $(seq 0 $((hosts_count - 1))); do
         read_host
-        restore_host "$name" "$key_path" "$user" "$host" "$remote_paths"
+        if [[ $name = $NAME_IN ]] || [[ -z $NAME_IN ]]; then
+            echo "Restore $name"
+            restore_host "$name" "$key_path" "$user" "$host" "$remote_paths"
+        fi
     done
 
     send_notification "Restore process completed"
@@ -188,6 +191,23 @@ case "$1" in
         backup
         ;;
     restore)
+        shift
+        case $1 in
+            -n|--name)
+              NAME_IN="$2"
+              ;;
+            --all)
+              echo "Restoring all"
+              ;;
+            -*|--*)
+              echo "Unknown option $1"
+              exit 1
+              ;;
+            *)
+            echo "Usage: --all or -n is needed"
+            exit 1
+            ;;
+        esac
         restore
         ;;
     *)

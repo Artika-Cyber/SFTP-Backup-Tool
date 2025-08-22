@@ -58,10 +58,11 @@ crontab -e
 chmod a+x main.sh
 ./main.sh backup
 ```
-#### Restore
+#### Restore 
 ```bash
 chmod a+x main.sh
-./main.sh restore
+./main.sh restore --all # restores all
+./main.sh restore -n name # restores one
 ```
 
 ## License
